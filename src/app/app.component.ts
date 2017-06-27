@@ -12,11 +12,17 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+
       statusBar.styleDefault();
       splashScreen.hide();
-    });
+
+      window["plugins"].OneSignal.startInit("8c300567-43e1-4214-9a86-6866e6bb734e", "441146784699")
+  	  .handleNotificationOpened((jsonData) => {
+        alert("Push Success! "+JSON.stringify(jsonData));
+      }).endInit();
+  });
+
   }
+
 }
 
